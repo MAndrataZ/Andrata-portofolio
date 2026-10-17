@@ -1,0 +1,38 @@
+.xp-list {
+  display: grid;
+  gap: var(--s-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xp {
+  position: relative;
+  padding-left: var(--s-5);
+  border-left: 1px solid var(--border);
+}
+
+.xp::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.xp h3 {
+  margin: 4px 0 2px;
+}
+
+.xp__org {
+  color: var(--text-muted);
+}
+
+.xp__summary {
+  max-width: 60ch;
+  margin-top: var(--s-2);
+  color: var(--text-muted);
+}

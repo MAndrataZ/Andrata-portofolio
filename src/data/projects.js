@@ -24,16 +24,38 @@ export const projects = [
       paper: '',
     },
     caseStudy: {
-      tldr: { problem: '', approach: '', result: '' },
-      problem: '',
-      data: '',
-      architecture: { image: 'projects/rag-thesis/architecture.webp', caption: '' },
-      decisions: [{ title: 'Chunking strategy', why: '' }],
-      evaluation: { summary: '', table: [{ metric: '', value: '', note: '' }] },
-      limitations: '',
-      next: '',
-      gallery: [{ image: 'projects/rag-thesis/shot-1.webp', alt: '' }],
-      extraSections: [{ heading: '', body: '' }],
+      tldr: {
+        problem: '[FILL: the problem in one line]',
+        approach: '[FILL: the approach in one line]',
+        result: '[FILL: the result with a number]',
+      },
+      problem: '[FILL: who has this problem and why existing answers fall short]',
+      data: '[FILL: corpus, domain, size, how it was collected and cleaned]',
+      architecture: {
+        image: 'projects/rag-thesis/architecture.png',
+        caption: '[FILL: one sentence explaining the diagram]',
+      },
+      decisions: [
+        {
+          title: 'Chunking strategy',
+          why: '[FILL: why this chunk size and overlap]',
+          alternative: '[FILL: what you compared it against]',
+        },
+      ],
+      evaluation: {
+        summary: '[FILL: what was measured, on how many questions, against which baseline]',
+        table: [
+          { metric: 'Faithfulness', value: '[FILL]', note: '[FILL]' },
+          { metric: 'Answer relevancy', value: '[FILL]', note: '[FILL]' },
+        ],
+      },
+      limitations: '[FILL: at least two real failure cases and why they happen]',
+      next: '[FILL: what you would do with more time]',
+      gallery: [
+        { image: 'projects/rag-thesis/shot-1.png', alt: '[FILL: describe the screenshot]' },
+        { image: 'projects/rag-thesis/shot-2.png', alt: '[FILL: describe the screenshot]' },
+      ],
+      extraSections: [{ heading: 'Extra section', body: '[FILL: anything that does not fit above]' }],
     },
   },
   {

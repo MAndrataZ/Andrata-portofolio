@@ -22,7 +22,7 @@ function Navbar({ onOpenPalette }) {
     <header className="navbar">
       <div className="container navbar__inner">
         <Link to="/" className="navbar__brand" onClick={close}>
-          andrata
+          Andrata
         </Link>
 
         <nav className="navbar__links" aria-label="Main">

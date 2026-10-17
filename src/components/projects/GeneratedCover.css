@@ -1,0 +1,27 @@
+.cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--surface-2);
+}
+
+.cover__grid {
+  stroke: var(--border-soft);
+  stroke-width: 0.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.cover__line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.cover__node {
+  fill: var(--bg);
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
