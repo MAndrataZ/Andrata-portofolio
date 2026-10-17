@@ -1,0 +1,12 @@
+.not-found__text {
+  max-width: 52ch;
+  margin-top: var(--s-4);
+  color: var(--text-muted);
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}

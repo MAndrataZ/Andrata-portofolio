@@ -76,7 +76,7 @@ function CaseStudy({ project }) {
           label: 'Architecture',
           content: (
             <figure className="cs__figure">
-              <img src={archSrc} alt={architecture.caption || 'Architecture diagram'} loading="lazy" />
+              <img src={archSrc} alt={architecture.caption || 'Architecture diagram'} width="1600" height="900" loading="lazy" />
               {architecture.caption && <figcaption>{architecture.caption}</figcaption>}
             </figure>
           ),
@@ -188,7 +188,7 @@ function CaseStudy({ project }) {
                     onClick={() => setSelected(s)}
                     aria-label={`Enlarge image${s.alt ? `: ${s.alt}` : ''}`}
                   >
-                    <img src={s.src} alt="" loading="lazy" />
+                    <img src={s.src} alt="" width="1600" height="900" loading="lazy" />
                   </button>
                 </li>
               ))}

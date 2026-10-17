@@ -1,0 +1,15 @@
+.exp__title {
+  margin-bottom: var(--s-8);
+}
+
+.exp__section + .exp__section {
+  margin-top: var(--s-8);
+}
+
+.exp__list {
+  display: grid;
+  gap: var(--s-7);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

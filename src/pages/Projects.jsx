@@ -96,6 +96,7 @@ function Projects() {
         </div>
       </div>
 
+      <h2 className="sr-only">Project list</h2>
       <p className="label projects__result" aria-live="polite">
         {visible.length} of {projects.length} projects
       </p>

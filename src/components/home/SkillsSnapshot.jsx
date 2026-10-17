@@ -4,21 +4,9 @@ import HomeSection from './HomeSection.jsx'
 import Chip from '../ui/Chip.jsx'
 import { skillGroups } from '../../data/skills.js'
 import { projects } from '../../data/projects.js'
-import { getProjectLink } from '../../lib/projects.js'
+import ProjectRef from '../projects/ProjectRef.jsx'
 import './SkillsSnapshot.css'
 
-function ProjectRef({ project }) {
-  const link = getProjectLink(project)
-  if (link?.to) return <Link to={link.to}>{project.title}</Link>
-  if (link?.href) {
-    return (
-      <a href={link.href} target="_blank" rel="noopener noreferrer">
-        {project.title}
-      </a>
-    )
-  }
-  return <span>{project.title}</span>
-}
 
 function SkillsSnapshot() {
   const [active, setActive] = useState(null)
