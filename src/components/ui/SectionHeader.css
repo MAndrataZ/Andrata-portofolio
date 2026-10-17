@@ -1,0 +1,13 @@
+.section-header {
+  margin-bottom: var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border-soft);
+}
+
+.section-header__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: var(--s-4);
+}

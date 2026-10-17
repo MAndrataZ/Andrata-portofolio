@@ -1,0 +1,50 @@
+:root {
+  color-scheme: dark;
+
+  /* color */
+  --bg: #121821;
+  --surface: #19212c;
+  --surface-2: #202a37;
+  --border: #2a3646;
+  --border-soft: #222d3b;
+
+  --text: #dfe4ea;
+  --text-muted: #9aa6b5;
+  /* ~4.2:1 on --bg, below AA for small text. Use only for non-essential UI, never for informational text. */
+  --text-faint: #6f7c8d;
+
+  --accent: #7fb59c;
+  --accent-hover: #96c8b0;
+  --accent-dim: rgba(127, 181, 156, 0.12);
+
+  /* ONLY for form/error states and "Copy failed". Never decorative. */
+  --signal-red: #c8746f;
+
+  /* layout */
+  --radius: 10px;
+  --maxw: 1120px;
+  --nav-h: 56px;
+
+  /* spacing scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 72px;
+  --s-9: 112px;
+
+  /* fonts */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* fluid type scale */
+  --fs-h1: clamp(3rem, 2.2rem + 3.4vw, 4.5rem);
+  --fs-h2: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
+  --fs-h3: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --fs-body: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem);
+  --fs-label: clamp(0.75rem, 0.73rem + 0.06vw, 0.8125rem);
+}

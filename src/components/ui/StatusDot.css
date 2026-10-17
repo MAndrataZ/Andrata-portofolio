@@ -1,0 +1,15 @@
+.dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot--accent {
+  background: var(--accent);
+}
+
+.dot--muted {
+  background: var(--text-faint);
+}
