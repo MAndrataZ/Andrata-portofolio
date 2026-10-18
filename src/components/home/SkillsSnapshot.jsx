@@ -2,15 +2,14 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import HomeSection from './HomeSection.jsx'
 import Chip from '../ui/Chip.jsx'
-import { skillGroups } from '../../data/skills.js'
-import { projects } from '../../data/projects.js'
 import ProjectRef from '../projects/ProjectRef.jsx'
+import { skillGroups } from '../../data/skills.js'
+import { getEvidence } from '../../lib/skills.js'
 import './SkillsSnapshot.css'
-
 
 function SkillsSnapshot() {
   const [active, setActive] = useState(null)
-  const evidence = active ? projects.filter((p) => active.projects?.includes(p.slug)) : []
+  const evidence = active ? getEvidence(active) : []
 
   return (
     <HomeSection
@@ -57,7 +56,7 @@ function SkillsSnapshot() {
             {evidence.length > 0 ? (
               evidence.map((p) => <ProjectRef key={p.slug} project={p} />)
             ) : (
-              <span className="skills__none">No linked project yet.</span>
+              <span className="skills__none">No linked example yet.</span>
             )}
           </>
         )}

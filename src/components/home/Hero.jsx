@@ -3,7 +3,7 @@ import Button from '../ui/Button.jsx'
 import StatusDot from '../ui/StatusDot.jsx'
 import PipelineViz from './PipelineViz.jsx'
 import { profile } from '../../data/profile.js'
-import { getFeatured } from '../../lib/projects.js'
+import { heroPhoto } from '../../lib/profilePhotos.js'
 import './Hero.css'
 
 const resumeUrl = `${import.meta.env.BASE_URL}${profile.resumeFile}`
@@ -13,9 +13,8 @@ function renderHeadline(text) {
 }
 
 function Hero() {
-  const flagship = getFeatured()[0]
-  const metrics = flagship?.metrics?.slice(0, 3) ?? []
   const { github, linkedin } = profile.links
+  const process = profile.howIWork
 
   return (
     <section className="container hero" aria-labelledby="hero-title">
@@ -56,7 +55,29 @@ function Hero() {
           </ul>
         )}
       </div>
-      <PipelineViz metrics={metrics} />
+
+      <div className={`hero__stage${heroPhoto ? ' hero__stage--photo' : ''}`}>
+        {heroPhoto && (
+          <div className="hero__portrait">
+            <div className="hero__card" aria-hidden="true" />
+            <img
+              className="hero__photo"
+              src={heroPhoto}
+              alt={`Portrait of ${profile.name}`}
+              width="960"
+              height="1200"
+              fetchPriority="high"
+              decoding="async"
+            />
+            <div className="hero__scan" aria-hidden="true" />
+          </div>
+        )}
+        <PipelineViz
+          steps={process?.steps}
+          caption={process?.caption}
+          startDelay={heroPhoto ? 1200 : 300}
+        />
+      </div>
     </section>
   )
 }

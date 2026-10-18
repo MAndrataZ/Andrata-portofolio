@@ -67,7 +67,7 @@ function Projects() {
 
       <div className="projects__controls">
         <div className="projects__chips" role="group" aria-label="Filter by category">
-          {categories.map((c) => (
+          {categories.filter((c) => c.key === 'all' || counts[c.key] > 0).map((c) => (
             <Chip key={c.key} active={cat === c.key} onClick={() => update('cat', c.key, 'all')}>
               {c.label} <span className="projects__count">{counts[c.key]}</span>
             </Chip>

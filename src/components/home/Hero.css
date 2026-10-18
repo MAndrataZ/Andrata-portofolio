@@ -50,6 +50,118 @@
   gap: 4px;
 }
 
+/* right column */
+.hero__stage {
+  width: 100%;
+}
+
+.hero__stage--photo {
+  --card-top: 20%; /* how far down the card starts; the head rises above it */
+  max-width: 440px;
+  margin-inline: auto;
+}
+
+.hero__portrait {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 20 / 23;
+}
+
+.hero__card {
+  position: absolute;
+  inset: var(--card-top) 0 0 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* one very faint radial glow behind the head (within the 8% limit in the brief) */
+.hero__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 55% at 50% 30%, rgba(127, 181, 156, 0.08), transparent 70%);
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0 1px 1px 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 1px);
+  object-fit: cover;
+  object-position: 50% 0;
+  clip-path: inset(0 round 0 0 9px 9px);
+}
+
+.hero__scan {
+  position: absolute;
+  inset: 0;
+  border-bottom: 2px solid var(--accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero__stage--photo .pipeline {
+  position: relative;
+  z-index: 2;
+  margin: -56px 12px 0;
+}
+
+/* entrance: plays once; with reduced motion the final state shows immediately */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__card {
+    animation: hero-fade 500ms ease both;
+  }
+
+  .hero__photo {
+    animation: hero-rise 700ms 150ms ease both;
+  }
+
+  .hero__scan {
+    animation: hero-scan 1000ms 500ms ease-in-out both;
+  }
+
+  .hero__stage--photo .pipeline {
+    animation: hero-rise 500ms 900ms ease both;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-scan {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
 @media (min-width: 960px) {
   .hero {
     grid-template-columns: 1.15fr 0.85fr;

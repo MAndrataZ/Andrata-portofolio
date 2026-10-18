@@ -1,8 +1,8 @@
 .pipeline {
   display: flex;
   flex-direction: column;
-  gap: var(--s-5);
-  padding: var(--s-5);
+  gap: var(--s-3);
+  padding: var(--s-4);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
@@ -10,54 +10,74 @@
 
 .pipeline__steps {
   display: flex;
-  flex-direction: column;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.pipeline__node {
+.pipeline__item {
   position: relative;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pipeline__item + .pipeline__item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -11px;
+  width: 10px;
+  height: 1px;
+  background: var(--border);
+  transition: background-color 300ms ease;
+}
+
+.pipeline__item.is-lit::before {
+  background: var(--accent);
+}
+
+.pipeline__node {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 6px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
   color: var(--text-muted);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
+  text-align: left;
   transition: border-color 300ms ease, color 300ms ease, background-color 300ms ease;
 }
 
-.pipeline__node + .pipeline__node {
-  margin-top: 20px;
+button.pipeline__node:hover {
+  border-color: var(--accent);
 }
 
-.pipeline__node + .pipeline__node::before {
-  content: '';
-  position: absolute;
-  top: -21px;
-  left: 24px;
-  width: 1px;
-  height: 20px;
-  background: var(--border);
-  transition: background-color 300ms ease;
-}
-
-.pipeline__node.is-lit {
+.is-lit .pipeline__node {
   border-color: var(--accent);
   background: var(--accent-dim);
   color: var(--accent);
 }
 
-.pipeline__node.is-lit::before {
+.pipeline__node.is-selected,
+.is-lit .pipeline__node.is-selected {
+  border-color: var(--accent);
   background: var(--accent);
+  color: var(--bg);
 }
 
-.pipeline__index {
+.pipeline__note {
+  min-height: 4.5em;
+  margin: 0;
   color: var(--text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
 }
 
 .pipeline__metrics {
@@ -71,25 +91,20 @@
 
 @media (min-width: 640px) {
   .pipeline__steps {
-    flex-direction: row;
+    gap: 16px;
+  }
+
+  .pipeline__item + .pipeline__item::before {
+    left: -17px;
+    width: 16px;
   }
 
   .pipeline__node {
-    flex: 1;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    padding: 10px;
+    font-size: 0.75rem;
   }
 
-  .pipeline__node + .pipeline__node {
-    margin-top: 0;
-    margin-left: 20px;
-  }
-
-  .pipeline__node + .pipeline__node::before {
-    top: 50%;
-    left: -21px;
-    width: 20px;
-    height: 1px;
+  .pipeline__note {
+    min-height: 3em;
   }
 }

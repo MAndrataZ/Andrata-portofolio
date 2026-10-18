@@ -15,6 +15,8 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   object-fit: cover;
+  background: var(--surface);
+  object-position: 50% 12%;
 }
 
 .about-intro__text p {
@@ -118,7 +120,7 @@
 
 @media (min-width: 960px) {
   .skill-groups {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--s-7);
   }
 }

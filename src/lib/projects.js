@@ -18,6 +18,7 @@ export function getFeatured() {
 
 // Where a project card should lead: its case study, an external link, or nowhere.
 export function getProjectLink(project) {
+  if (project.to) return { to: project.to }
   if (project.caseStudy) return { to: `/projects/${project.slug}` }
   const href = project.links?.github || project.links?.demo
   return href ? { href } : null

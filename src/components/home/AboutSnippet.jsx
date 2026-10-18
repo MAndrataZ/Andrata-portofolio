@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import HomeSection from './HomeSection.jsx'
 import { profile } from '../../data/profile.js'
-import { asset } from '../../lib/assets.js'
+import { aboutPhoto as photo } from '../../lib/profilePhotos.js'
 import './AboutSnippet.css'
 
-const photo = asset(profile.photo)
 const education = profile.education?.[0]
 
 function AboutSnippet() {

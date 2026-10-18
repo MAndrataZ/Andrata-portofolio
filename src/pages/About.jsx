@@ -4,13 +4,11 @@ import SectionHeader from '../components/ui/SectionHeader.jsx'
 import ProjectRef from '../components/projects/ProjectRef.jsx'
 import { profile } from '../data/profile.js'
 import { skillGroups } from '../data/skills.js'
-import { projects } from '../data/projects.js'
-import { asset } from '../lib/assets.js'
+import { getEvidence } from '../lib/skills.js'
+import { aboutPhoto as photo } from '../lib/profilePhotos.js'
 import './About.css'
 
-const photo = asset(profile.photo)
 const resumeUrl = `${import.meta.env.BASE_URL}${profile.resumeFile}`
-const bySlug = Object.fromEntries(projects.map((p) => [p.slug, p]))
 
 function About() {
   const { email, links, currently } = profile
@@ -55,7 +53,7 @@ function About() {
               <h3 className="skill-group__title">{group.name}</h3>
               <ul className="skill-list">
                 {group.items.map((item) => {
-                  const evidence = (item.projects ?? []).map((slug) => bySlug[slug]).filter(Boolean)
+                    const evidence = getEvidence(item)
                   return (
                     <li key={item.name} className="skill">
                       <span>{item.name}</span>
