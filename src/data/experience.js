@@ -27,13 +27,32 @@ export const experience = [
     type: 'organization',
     org: 'HMIF UNIKOM',
     role: 'General Secretary',
-    location: '',
-    start: '2024',
-    end: '2025',
-    summary: 'Himpunan Mahasiswa Teknik Informatika, the Informatics Engineering student association.',
+    location: 'Bandung',
+    start: '2024', // [CONFIRM] LinkedIn: Dec 2024
+    end: '2025', // [CONFIRM] LinkedIn: Dec 2025
+    summary:
+      'Ran the administration of the Informatics Engineering student association (correspondence, minutes, documentation, archives, asset inventory) and supported the Chairman in coordinating work programs, internal policies, and meetings.',
     highlights: [
-      'Managed organizational administration: correspondence, meeting minutes, and activity documentation.',
-      'Archived important documents, digital and physical, and supported the chair in coordinating work programs, internal policies, and meetings.',
+      'Scheduled and coordinated Core Meetings and General Meetings, and prepared their materials, announcements, and formal letters.',
+      'Reported progress on each of the Chairman’s instructions and communicated the organization’s status to leadership and all members, representing the Chairman when needed.',
+    ],
+    shipped: [],
+    tech: [],
+    showOnHome: false,
+  },
+  {
+    id: 'hmif-kesra',
+    type: 'organization',
+    org: 'HMIF UNIKOM',
+    role: 'Member, Arts & Sports Division (KESRA)',
+    location: 'Bandung',
+    start: '2023', // [CONFIRM] LinkedIn: Nov 2023
+    end: '2024', // [CONFIRM] LinkedIn: Dec 2024
+    summary:
+      'Division of the association that develops the artistic and athletic potential of Informatics Engineering students.',
+    highlights: [
+      'Served as Person in Charge of the Mobile Legends esports branch: team coordination, player management, and competition logistics.',
+      'Helped plan and run arts and sports programs, coordinating with other divisions and UNIKOM organizations.',
     ],
     shipped: [],
     tech: [],
@@ -44,7 +63,7 @@ export const experience = [
     type: 'organization',
     org: 'BLM UNIKOM',
     role: 'Student Legislative Member',
-    location: '',
+    location: 'Bandung',
     start: '2023',
     end: '2024',
     summary: 'Badan Legislatif Mahasiswa, the UNIKOM Student Legislative Body.',

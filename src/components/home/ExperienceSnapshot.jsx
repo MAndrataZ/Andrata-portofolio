@@ -5,11 +5,8 @@ import { formatPeriod } from '../../lib/dates.js'
 import { sortNewest } from '../../lib/experience.js'
 import './ExperienceSnapshot.css'
 
-const recent = sortNewest(experience).slice(0, 2)
-  .sort(
-    (a, b) =>
-      (b.end ?? '9999-12').localeCompare(a.end ?? '9999-12') || b.start.localeCompare(a.start)
-  )
+const recent = sortNewest(experience)
+  .sort((a, b) => Number(b.showOnHome ?? false) - Number(a.showOnHome ?? false))
   .slice(0, 2)
 
 function ExperienceSnapshot() {

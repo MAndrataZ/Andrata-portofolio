@@ -1,8 +1,8 @@
 export const profile = {
   name: 'Muhammad Andrata Zharfan Mustika',
-  headline: 'I turn business problems into AI systems people can *trust*.',
+  headline: 'I turn business problems into data and AI work people can *trust*.',
   summary:
-    'Informatics graduate who works between stakeholders and engineers. At Rama Group I led the web platforms of two radio brands; for my thesis I built and evaluated a RAG system on stunting questions.',
+    'Informatics graduate from Bandung working across data science, computer vision, and LLM/RAG. I work between stakeholders and engineers: I led the web platforms of two radio brands at Rama Group and built and evaluated a RAG system for my thesis.',
   roles: ['AI Engineer', 'Data Scientist'],
   howIWork: {
     caption: 'How I work',
@@ -24,9 +24,12 @@ export const profile = {
   photo: 'profile/photo.png',
   photoAbout: 'profile/photo-about.png',
   bio: [
-    'I’m an Informatics Engineering graduate from UNIKOM in Bandung, and my strongest suit is the stretch between a business problem and a working system: finding out what stakeholders need, turning it into technical work, and explaining the result to people who don’t read code. At Rama Group I was the main technical liaison while building the Rama FM and Paramuda Radio platforms, and before that I served as General Secretary of the informatics student association and in the student legislative body.',
-    'On the technical side I work with LLM and RAG systems, machine learning for text and images, and data analysis from preprocessing to evaluation. I report limitations next to results: my thesis evaluation showed numerical questions as the weak spot, with faithfulness at 0.69.',
-  ],
+  'I’m an Informatics Engineering graduate from UNIKOM in Bandung. I started out building web apps with Laravel and JavaScript, and over time my focus moved to data and AI: machine learning and big data courses, then classification projects on text, images, and tabular data, and finally a thesis on LLMs and RAG.',
+
+  'What I enjoy most is the stretch between a business problem and a working system: finding out what stakeholders actually need, turning that into technical work, and explaining the result to people who don’t read code. At Rama Group I did this as the main technical liaison for the Rama FM and Paramuda Radio platforms, leading my team without an IT supervisor. I also like saying where things fall short. My thesis evaluation showed numerical questions as the weak spot, with faithfulness at 0.69, and I reported that next to the results.',
+
+  'Away from the keyboard, I spent much of university in student organizations: General Secretary of the informatics student association (HMIF), Presidium 1 of its 2023/2024 grand assembly, a member of the student legislative body, and the person in charge of a student Mobile Legends competition. I’m also often asked to MC events, including in English, and I’ve moderated a university-level student election event. Those years taught me to run a meeting and hold a room, and I use that when I present data work to people who just want to know what it means for them. I’m open to junior data science, analytics, and AI roles, and always up for a conversation.',
+],
   education: [
     {
       school: 'Universitas Komputer Indonesia (UNIKOM), Bandung',

@@ -11,7 +11,7 @@ const stats = [
   { value: projects.filter((p) => p.type === 'Thesis').length, label: 'Thesis: RAG system evaluated with RAGAS' },
   { value: projects.length, label: 'Projects across AI, data, and web' },
   { value: shipped, label: 'Live radio websites shipped during internship' },
-  { value: experience.filter((e) => e.type === 'organization').length, label: 'Organizations' },
+  { value: new Set(experience.filter((e) => e.type === 'organization').map((e) => e.org)).size, label: 'Organizations' },
 ].filter((s) => s.value > 0)
 
 function ProofStrip() {

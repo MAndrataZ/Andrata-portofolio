@@ -3,7 +3,7 @@ export const skillGroups = [
     name: 'Working with people',
     items: [
       { name: 'Translating business requirements', experience: ['rama-group-intern'] },
-      { name: 'Team leadership and coordination', experience: ['rama-group-intern', 'hmif-secretary'] },
+      { name: 'Team leadership and coordination', experience: ['rama-group-intern', 'hmif-secretary', 'hmif-kesra'] },
       { name: 'Technical presentation', experience: ['rama-group-intern'] },
       { name: 'Communication', experience: ['rama-group-intern', 'blm-unikom'] },
       { name: 'Public speaking' },
