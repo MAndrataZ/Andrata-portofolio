@@ -55,6 +55,11 @@
   object-fit: cover;
 }
 
+.card__cover > .browser {
+  position: absolute;
+  inset: 16px 16px 0;
+}
+
 .card__body {
   display: flex;
   flex: 1;

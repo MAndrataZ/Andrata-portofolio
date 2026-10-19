@@ -1,16 +1,21 @@
-import { Link } from 'react-router-dom'
-import { ArrowRight, Code, ExternalLink } from 'lucide-react'
-import Chip from '../ui/Chip.jsx'
-import StatusDot from '../ui/StatusDot.jsx'
-import GeneratedCover from './GeneratedCover.jsx'
-import { asset } from '../../lib/assets.js'
-import { categoryLabels, getProjectLink, statusTone } from '../../lib/projects.js'
-import './ProjectCard.css'
+import { Link } from "react-router-dom";
+import { ArrowRight, Code, ExternalLink } from "lucide-react";
+import Chip from "../ui/Chip.jsx";
+import StatusDot from "../ui/StatusDot.jsx";
+import GeneratedCover from "./GeneratedCover.jsx";
+import BrowserFrame from "./BrowserFrame.jsx";
+import { asset } from "../../lib/assets.js";
+import {
+  categoryLabels,
+  getProjectLink,
+  statusTone,
+} from "../../lib/projects.js";
+import "./ProjectCard.css";
 
 function StackChips({ stack, max }) {
-  if (!stack?.length) return null
-  const shown = stack.slice(0, max)
-  const extra = stack.length - shown.length
+  if (!stack?.length) return null;
+  const shown = stack.slice(0, max);
+  const extra = stack.length - shown.length;
 
   return (
     <ul className="card__chips">
@@ -25,45 +30,70 @@ function StackChips({ stack, max }) {
         </li>
       )}
     </ul>
-  )
+  );
 }
 
-function ProjectCard({ project, variant = 'default' }) {
-  const { slug, title, tagline, category, year, status, type, cover, stack, metrics = [], links = {}, caseStudy } = project
-  const link = getProjectLink(project)
+function ProjectCard({ project, variant = "default" }) {
+  const {
+    slug,
+    title,
+    tagline,
+    category,
+    year,
+    status,
+    type,
+    cover,
+    coverStyle,
+    stack,
+    metrics = [],
+    links = {},
+    caseStudy,
+  } = project;
+  const link = getProjectLink(project);
 
-  let titleNode = title
+  let titleNode = title;
   if (link?.to) {
     titleNode = (
       <Link to={link.to} className="card__link">
         {title}
       </Link>
-    )
+    );
   } else if (link?.href) {
     titleNode = (
-      <a href={link.href} target="_blank" rel="noopener noreferrer" className="card__link">
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card__link"
+      >
         {title}
       </a>
-    )
+    );
   }
 
-  if (variant === 'compact') {
+  if (variant === "compact") {
     return (
       <article className="card card--compact">
         <h3 className="card__title">{titleNode}</h3>
-        <span className="label">{[type, year].filter(Boolean).join(' · ')}</span>
+        <span className="label">
+          {[type, year].filter(Boolean).join(" · ")}
+        </span>
         <StackChips stack={stack} max={3} />
       </article>
-    )
+    );
   }
 
-  const coverSrc = cover ? asset(cover) : null
-  const meta = [categoryLabels[category] ?? category, year, status].filter(Boolean).join(' · ')
+  const coverSrc = cover ? asset(cover) : null;
+  const meta = [categoryLabels[category] ?? category, year, status]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <article className={`card card--${variant}`}>
       <div className="card__cover">
-        {coverSrc ? (
+        {coverSrc && coverStyle === "browser" ? (
+          <BrowserFrame src={coverSrc} url={links.demo} />
+        ) : coverSrc ? (
           <img src={coverSrc} alt="" width="1600" height="900" loading="lazy" />
         ) : (
           <GeneratedCover slug={slug} />
@@ -94,12 +124,22 @@ function ProjectCard({ project, variant = 'default' }) {
           <div className="card__footer">
             <div className="card__icons">
               {links.github && (
-                <a href={links.github} target="_blank" rel="noopener noreferrer" aria-label="Source code on GitHub">
+                <a
+                  href={links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Source code on GitHub"
+                >
                   <Code size={18} strokeWidth={1.5} /> Code
                 </a>
               )}
               {links.demo && (
-                <a href={links.demo} target="_blank" rel="noopener noreferrer" aria-label="Live demo">
+                <a
+                  href={links.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Live demo"
+                >
                   <ExternalLink size={18} strokeWidth={1.5} /> Demo
                 </a>
               )}
@@ -118,7 +158,7 @@ function ProjectCard({ project, variant = 'default' }) {
         )}
       </div>
     </article>
-  )
+  );
 }
 
-export default ProjectCard
+export default ProjectCard;

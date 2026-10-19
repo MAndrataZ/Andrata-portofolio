@@ -9,13 +9,15 @@ export const experience = [
     end: '2025-11',
     summary: 'Radio broadcasting group behind the Rama FM and Paramuda Radio brands.',
     highlights: [
-      'Led development of the Rama FM and Paramuda Radio web platforms, covering system architecture, UI/UX improvements, and content management in Laravel, Inertia, and React.',
+      'Led development of the new Rama FM and Paramuda Radio websites in Laravel, Inertia, and React, covering system architecture, UI/UX improvements, and content management.',
+      'Improved the admin panel’s content management and shipped features and sections the company requested that the previous versions did not have.',
+      'Built an analytics panel that shows website visitors and radio listeners over a chosen period, plus the views of every published article.',
       'Acted as the main technical liaison for stakeholders: coordinated the development team, managed schedules, and translated business requirements into technical solutions.',
-      'Worked with the marketing division to position the website as a promotion and branding channel, and took part in client meetings.',
+      'Worked with the marketing division to position the websites as a promotion and branding channel, and took part in client meetings.',
     ],
     shipped: [
-      { label: 'Rama FM', url: '' }, // [FILL] live URL
-      { label: 'Paramuda Radio', url: '' }, // [FILL] live URL
+      { label: 'Rama FM', url: 'https://ramafm.com/' },
+      { label: 'Paramuda Radio', url: 'https://www.paramudaradio.com/' },
     ],
     tech: ['Laravel', 'Inertia', 'React'],
     showOnHome: true,

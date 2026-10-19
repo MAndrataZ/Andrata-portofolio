@@ -1,7 +1,7 @@
 export const projects = [
   {
     slug: 'rag-thesis',
-    title: 'Stunting QA with RAG and Qwen 2.5 7B',
+    title: 'Implementation of retrieval-augmented generation (RAG) with the Qwen 2.5 7B Instruct generator in a stunting question-answering system',
     tagline:
       'Indonesian RAG system answering stunting questions from policy documents and journals; 0.85 faithfulness on 80 validated questions.',
     category: 'ai-llm',
@@ -47,6 +47,78 @@ export const projects = [
     },
   },
   {
+    slug: 'rama-fm-website',
+    title: 'Rama FM Website',
+    tagline:
+      'New version of the station website with improved UI/UX, a better content admin panel, company-requested features, and audience analytics.',
+    category: 'web',
+    tags: ['Web', 'Laravel', 'React'],
+    type: 'Internship',
+    year: 2025,
+    status: 'shipped',
+    featured: true,
+    featuredRank: 2,
+    role: 'Lead developer (internship)',
+    cover: 'projects/rama-fm/cover.png',
+    coverStyle: 'browser',
+    stack: ['Laravel', 'Inertia', 'React'],
+    metrics: [],
+    links: { github: '', demo: 'https://ramafm.com/', video: '', paper: '' },
+    caseStudy: {
+      tldr: {
+        problem: 'The company needed a new version of its radio website: better UI/UX, easier content management in the admin panel, and features the previous version did not have.',
+        approach: 'Led development in Laravel, Inertia, and React: system architecture, UI/UX improvements, admin content management, the sections and features the company requested, and an analytics panel.',
+        result: 'Live at ramafm.com, with an analytics panel showing visitors and radio listeners per period and the views of every published article.',
+      },
+      extraSections: [
+        {
+          heading: 'What changed from the previous version',
+          body: 'UI and UX: a refreshed interface and navigation.\n\nContent management: an improved admin panel so the team can publish and manage content more easily.\n\nNew features and sections: the additions the company asked for that the previous version did not have.\n\nAnalytics: a panel showing website visitors and radio listeners over a chosen period, plus the number of views on each published article.',
+        },
+        {
+          heading: 'My role',
+          body: 'I led development and was the main technical liaison for stakeholders: I coordinated the development team, managed schedules, translated business requirements into technical solutions, and took part in client meetings. I also worked with the marketing division to position the site as a promotion and branding channel.',
+        },
+      ],
+    },
+  },
+  {
+    slug: 'paramuda-radio-website',
+    title: 'Paramuda Radio Website',
+    tagline:
+      'New version of the station website with improved UI/UX, a better content admin panel, company-requested features, and audience analytics.',
+    category: 'web',
+    tags: ['Web', 'Laravel', 'React'],
+    type: 'Internship',
+    year: 2025,
+    status: 'shipped',
+    featured: true,
+    featuredRank: 3,
+    role: 'Lead developer (internship)',
+    cover: 'projects/paramuda-radio/cover.png',
+    coverStyle: 'browser',
+    stack: ['Laravel', 'Inertia', 'React'],
+    metrics: [],
+    links: { github: '', demo: 'https://www.paramudaradio.com/', video: '', paper: '' },
+    caseStudy: {
+      tldr: {
+        problem: 'The company needed a new version of its radio website: better UI/UX, easier content management in the admin panel, and features the previous version did not have.',
+        approach: 'Led development in Laravel, Inertia, and React: system architecture, UI/UX improvements, admin content management, the sections and features the company requested, and an analytics panel.',
+        result: 'Live at paramudaradio.com, with an analytics panel showing visitors and radio listeners per period and the views of every published article.',
+      },
+      extraSections: [
+        {
+          heading: 'What changed from the previous version',
+          body: 'UI and UX: a refreshed interface and navigation.\n\nContent management: an improved admin panel so the team can publish and manage content more easily.\n\nNew features and sections: the additions the company asked for that the previous version did not have.\n\nAnalytics: a panel showing website visitors and radio listeners over a chosen period, plus the number of views on each published article.',
+        },
+        {
+          heading: 'My role',
+          body: 'I led development and was the main technical liaison for stakeholders: I coordinated the development team, managed schedules, translated business requirements into technical solutions, and took part in client meetings. I also worked with the marketing division to position the site as a promotion and branding channel.',
+        },
+      ],
+    },
+  },
+  {
     slug: 'jumbo-sentiment-analysis',
     title: 'Sentiment Analysis of the Film Jumbo on Twitter (X)',
     tagline:
@@ -63,7 +135,7 @@ export const projects = [
       { label: 'Macro-F1', value: '0.63' },
       { label: 'Negative recall', value: '0.58' },
     ],
-    links: { github: '', demo: '', video: '', paper: '' }, // [FILL]
+    links: { github: 'https://github.com/MAndrataZ/analisis_sentimen_jumbo_twitter', demo: '', video: '', paper: '' }, // [FILL]
     caseStudy: {
       tldr: {
         problem: 'Only 5.4% of 5,302 Indonesian tweets are negative, so a plain classifier detects them poorly (recall 0.12).',
