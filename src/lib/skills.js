@@ -2,7 +2,7 @@ import { projects } from '../data/projects.js'
 import { experience } from '../data/experience.js'
 import { profile } from '../data/profile.js'
 
-// A skill can point to projects, experience entries, and certifications as evidence.
+// Flat list, used by the Home skills panel.
 export function getEvidence(item) {
   const fromProjects = (item.projects ?? [])
     .map((slug) => projects.find((p) => p.slug === slug))
@@ -27,4 +27,49 @@ export function getEvidence(item) {
     )
 
   return [...fromProjects, ...orgs.values(), ...fromCerts]
+}
+
+// Grouped by type, used by the About page skill explorer.
+export function getEvidenceGroups(item) {
+  const projectRows = (item.projects ?? [])
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter(Boolean)
+    .map((p) => ({
+      key: p.slug,
+      title: p.title,
+      meta: [p.type, p.year].filter(Boolean).join(' · '),
+      to: `/projects/${p.slug}`,
+    }))
+
+  const byOrg = new Map()
+  for (const id of item.experience ?? []) {
+    const entry = experience.find((e) => e.id === id)
+    if (!entry) continue
+    const row = byOrg.get(entry.org) ?? { key: entry.org, title: entry.org, roles: [], to: '/experience' }
+    row.roles.push(entry.role)
+    byOrg.set(entry.org, row)
+  }
+  const experienceRows = [...byOrg.values()].map((r) => ({
+    key: r.key,
+    title: r.title,
+    meta: r.roles.join(' · '),
+    to: r.to,
+  }))
+
+  const certRows = (item.certs ?? [])
+    .map((id) => (profile.certifications ?? []).find((c) => c.id === id))
+    .filter(Boolean)
+    .map((c) => ({
+      key: c.id,
+      title: c.name,
+      meta: [c.issuer, c.year].filter(Boolean).join(' · '),
+      href: c.url || null,
+    }))
+
+  return {
+    projects: projectRows,
+    experience: experienceRows,
+    certs: certRows,
+    total: projectRows.length + experienceRows.length + certRows.length,
+  }
 }

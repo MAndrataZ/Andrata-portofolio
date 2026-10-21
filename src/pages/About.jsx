@@ -1,10 +1,10 @@
 import { Mail } from 'lucide-react'
 import Button from '../components/ui/Button.jsx'
 import SectionHeader from '../components/ui/SectionHeader.jsx'
-import ProjectRef from '../components/projects/ProjectRef.jsx'
+import SkillExplorer from '../components/about/SkillExplorer.jsx'
+import CredentialGrid from '../components/about/CredentialGrid.jsx'
 import { profile } from '../data/profile.js'
 import { skillGroups } from '../data/skills.js'
-import { getEvidence } from '../lib/skills.js'
 import { aboutPhoto as photo } from '../lib/profilePhotos.js'
 import './About.css'
 
@@ -46,32 +46,7 @@ function About() {
           What I <em>use</em>, and where
         </>
       ),
-      content: (
-        <div className="skill-groups">
-          {skillGroups.map((group) => (
-            <div key={group.name}>
-              <h3 className="skill-group__title">{group.name}</h3>
-              <ul className="skill-list">
-                {group.items.map((item) => {
-                    const evidence = getEvidence(item)
-                  return (
-                    <li key={item.name} className="skill">
-                      <span>{item.name}</span>
-                      {evidence.length > 0 && (
-                        <span className="skill__evidence">
-                          {evidence.map((p) => (
-                            <ProjectRef key={p.slug} project={p} />
-                          ))}
-                        </span>
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          ))}
-        </div>
-      ),
+      content: <SkillExplorer />,
     },
     certifications.length > 0 && {
       key: 'certifications',
@@ -81,24 +56,7 @@ function About() {
           Certifications <em>earned</em>
         </>
       ),
-      content: (
-        <ul className="cert-list">
-          {certifications.map((c) => (
-            <li key={c.name}>
-              <h3>
-                {c.url ? (
-                  <a href={c.url} target="_blank" rel="noopener noreferrer">
-                    {c.name}
-                  </a>
-                ) : (
-                  c.name
-                )}
-              </h3>
-              <p className="label">{[c.issuer, c.year].filter(Boolean).join(' · ')}</p>
-            </li>
-          ))}
-        </ul>
-      ),
+      content: <CredentialGrid items={certifications} />,
     },
     {
       key: 'contact',
