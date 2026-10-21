@@ -37,3 +37,9 @@
     gap: var(--s-7);
   }
 }
+
+.skills__more:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  text-decoration: none;
+}

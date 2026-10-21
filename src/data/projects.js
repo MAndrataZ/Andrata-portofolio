@@ -90,7 +90,7 @@ export const projects = [
     type: 'Internship',
     year: 2025,
     status: 'shipped',
-    featured: true,
+    featured: false,
     featuredRank: 3,
     role: 'Lead developer (internship)',
     cover: 'projects/paramuda-radio/cover.png',
@@ -160,7 +160,7 @@ export const projects = [
     tags: ['Computer vision', 'CNN', 'Deep learning'],
     year: 2025,
     status: 'shipped',
-    featured: true,
+    featured: false,
     featuredRank: 3,
     stack: ['Python', 'PyTorch', 'OpenCV', 'Scikit-learn'],
     metrics: [

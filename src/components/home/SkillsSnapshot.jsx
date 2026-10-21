@@ -7,6 +7,12 @@ import { skillGroups } from '../../data/skills.js'
 import { getEvidence } from '../../lib/skills.js'
 import './SkillsSnapshot.css'
 
+// Home shows the items flagged `home: true`; a group with no flags falls back to its first 6 items.
+function visibleItems(group) {
+  const pinned = group.items.filter((i) => i.home)
+  return pinned.length > 0 ? pinned : group.items.slice(0, 6)
+}
+
 function SkillsSnapshot() {
   const [active, setActive] = useState(null)
   const evidence = active ? getEvidence(active) : []
@@ -27,25 +33,36 @@ function SkillsSnapshot() {
       }
     >
       <div className="skills">
-        {skillGroups.map((group) => (
-          <div key={group.name}>
-            <h3 className="skills__title">{group.name}</h3>
-            <ul className="skills__items">
-              {group.items.slice(0, 6).map((item) => (
-                <li key={item.name}>
-                  <Chip
-                    active={active?.name === item.name}
-                    onClick={() => setActive(item)}
-                    onMouseEnter={() => setActive(item)}
-                    onFocus={() => setActive(item)}
-                  >
-                    {item.name}
-                  </Chip>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {skillGroups.map((group) => {
+          const shown = visibleItems(group)
+          const hidden = group.items.length - shown.length
+          return (
+            <div key={group.name}>
+              <h3 className="skills__title">{group.name}</h3>
+              <ul className="skills__items">
+                {shown.map((item) => (
+                  <li key={item.name}>
+                    <Chip
+                      active={active?.name === item.name}
+                      onClick={() => setActive(item)}
+                      onMouseEnter={() => setActive(item)}
+                      onFocus={() => setActive(item)}
+                    >
+                      {item.name}
+                    </Chip>
+                  </li>
+                ))}
+                {hidden > 0 && (
+                  <li>
+                    <Link to="/about" className="chip skills__more">
+                      +{hidden} more
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            </div>
+          )
+        })}
       </div>
 
       <div className="skills__evidence" aria-live="polite">
