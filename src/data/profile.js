@@ -45,7 +45,7 @@ export const profile = {
     { id: 'hacktiv8-ai-work', name: 'AI for Work & Career Readiness With Google AI Products', issuer: 'Hacktiv8 Indonesia', year: '2026', url: 'https://drive.google.com/file/d/1iZD0TxVovqUCCan_vCkk4C_hWhVNED2w/view?usp=sharing' },
     { id: 'myskill-data-analyst', name: 'Data Analyst Fundamental', issuer: 'MySkill', year: '2026', url: 'https://drive.google.com/file/d/1TxPLdM83T45dat9oz__T8mnQYOb2DSfd/view?usp=sharing' },
     { id: 'google-ai-essentials', name: 'Google AI Essentials', issuer: 'Google', year: '2025', url: 'https://www.coursera.org/account/accomplishments/specialization/KPMZTHZPEYI0' },
-    { id: 'revou-software-engineer', name: 'Software Engineer Fundamental Course', issuer: 'RevoU', year: '2024', url: 'https://drive.google.com/file/d/1nOq0vXLJ2EBBdNaigXeoeTXWApM6HyYZ/view?usp=sharing' },
+    { id: 'revou-software-engineer', name: 'Software Engineer Fundamental Course', issuer: 'RevoU', year: '2024', url: 'https://drive.google.com/file/d/1MQsaV1i6OOGMCANRjlioKjs83lrAdewj/view?usp=sharing' },
   ],
   currently: '', // empty = block hidden on About
   lookingFor: 'Looking for roles in AI engineering, data science, or data analysis.',
