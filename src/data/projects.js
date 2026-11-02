@@ -263,7 +263,7 @@ export const projects = [
     status: 'shipped',
     featured: true,
     featuredRank: 3,
-    role: 'Data scientist (BNSP Associate Data Scientist exam, notebook later cleaned up)',
+    role: 'Data scientist (BNSP Associate Data Scientist exam)',
     stack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'mljar-supervised', 'CatBoost', 'Matplotlib', 'Seaborn'],
     metrics: [
       { label: 'Test accuracy', value: '0.974' },
