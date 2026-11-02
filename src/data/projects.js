@@ -251,4 +251,84 @@ export const projects = [
       limitations: 'Because labels were derived from z-score rules on a synthetic dataset, a near-perfect score mostly shows the model recovering the rule, not generalizing to real children.',
     },
   },
+  {
+    slug: 'credit-approval-bnsp',
+    title: 'Credit Approval: Customer Credit Status Prediction',
+    tagline:
+      'Binary classifier (performing vs. non-performing) on 766 loans; CatBoost reaches 0.974 test accuracy, and an ablation shows it depends almost entirely on arrears columns.',
+    category: 'data-science',
+    tags: ['Classification', 'AutoML', 'Credit risk', 'Banking'],
+    type: 'Certification project',
+    year: 2026,
+    status: 'shipped',
+    featured: true,
+    featuredRank: 3,
+    role: 'Data scientist (BNSP Associate Data Scientist exam, notebook later cleaned up)',
+    stack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'mljar-supervised', 'CatBoost', 'Matplotlib', 'Seaborn'],
+    metrics: [
+      { label: 'Test accuracy', value: '0.974' },
+      { label: 'Recall (non-performing)', value: '0.982' },
+      { label: 'AUC', value: '0.988' },
+    ],
+    links: { github: 'https://github.com/MAndrataZ/credit_approval_BNSP', demo: '', video: '', paper: '' }, // [FILL] demo
+    caseStudy: {
+      tldr: {
+        problem: 'Classify 766 bank customers as LANCAR (performing) or MACET (non-performing) from a deliberately dirty dataset, and find out how much of the model score comes from genuinely predictive signal.',
+        approach: 'Cleaned the raw data (number formats, inconsistent categories, impossible ages, outliers), split train/test before any preprocessing, selected features by correlation with the target, and trained models with mljar-supervised AutoML. Then ran an ablation removing the arrears columns.',
+        result: 'CatBoost, chosen automatically by AutoML, scored 0.974 accuracy, 0.982 recall on the non-performing class, and 0.988 AUC on 154 held-out customers (majority-class baseline: 0.727). Without the arrears columns, accuracy falls to 0.766, so the model recognizes loans already in arrears rather than predicting future ones.',
+      },
+      problem: 'The project comes from the BNSP Associate Data Scientist competency exam, done within a few hours. The task is to classify each customer as performing or non-performing. I later rebuilt the notebook with a correct processing order and added an ablation test, because a high score alone does not show what the model is actually using. For a bank, a missed non-performing loan means lost principal and under-provisioned reserves, which is why recall on the non-performing class is the metric I prioritize.',
+      data: '766 customers with 16 columns (names anonymized). 556 customers (72.6%) are non-performing and 210 (27.4%) performing, so always guessing non-performing already gives 0.727 accuracy, which I use as the baseline. The data is intentionally messy: five money columns were read as text because of comma decimals, gender had six spellings for two categories, 27 ages fell outside 17-80 (from -7,162 to 1,043), a few columns had missing values, loan amounts reached 228.7 million against a median of 1.5 million, and 3 balances were negative. The customer name (an ID) and the loan type column (constant at 100) were dropped. The split is 612 train and 154 test rows, stratified with random_state=42.',
+      decisions: [
+        {
+          title: 'Split first, then preprocess',
+          why: 'In the original exam notebook, imputation, capping, feature selection, and scaling happened before the split, which leaks test information. In the rebuilt version, the data is split first, and every statistic (medians, modes, IQR bounds, feature list, scaler parameters) is computed on the training set only and then applied to the test set. The customer name column, which had been encoded and even selected as a feature, was also removed.',
+        },
+        {
+          title: 'Rule-based cleaning for impossible values',
+          why: 'Ages outside 17-80 were blanked and imputed with the training median instead of being clipped, since clipping an age of -7,162 to a boundary would invent data. Missing numeric values use the median and codes use the mode. Extreme amounts and negative balances are capped at the IQR bounds of the training data.',
+        },
+        {
+          title: 'Correlation-based feature selection',
+          why: 'Kept features with an absolute correlation of at least 0.1 with the target, which reduced 13 features to 8. Principal arrears has the strongest correlation with non-performing status (0.52), followed by interest arrears, guarantor class, and the col column (0.31 to 0.34). Loan amount and monthly installment correlate weakly and negatively (about -0.25 and -0.28).',
+        },
+        {
+          title: 'AutoML with mljar-supervised',
+          why: 'Used Explain mode with a 300-second budget and accuracy as the metric. Validation accuracy: CatBoost and Ensemble 0.987, XGBoost and Random Forest 0.967, Linear 0.961, Decision Tree and Extra Trees 0.954, Neural Network 0.941, Nearest Neighbors 0.935, baseline 0.725. CatBoost and Ensemble tied, and mljar picked CatBoost. LightGBM failed during training on my machine, so it is not in the comparison.',
+        },
+        {
+          title: 'Ablation on the arrears columns',
+          why: 'Ran Random Forest on three scenarios: all 8 selected features (accuracy 0.974, AUC 0.992), without col (0.974, 0.995), and without col plus both arrears columns (0.766, 0.826). Removing col changes nothing, so it carries no information beyond arrears. Removing both arrears columns leaves the model only about four points above the 0.727 baseline.',
+        },
+      ],
+      evaluation: {
+        summary: 'Test-set results on 154 held-out customers; 4 were misclassified (2 performing flagged as non-performing, 2 non-performing missed). Train-test gaps are small, so overfitting is limited.',
+        table: [
+          { metric: 'Accuracy', value: '0.974', note: 'Train 0.987; majority-class baseline 0.727' },
+          { metric: 'Precision (non-performing)', value: '0.982', note: 'Train 0.987' },
+          { metric: 'Recall (non-performing)', value: '0.982', note: 'Train 0.996; primary metric for the bank use case' },
+          { metric: 'F1 (non-performing)', value: '0.982', note: 'Train 0.991' },
+          { metric: 'AUC', value: '0.988', note: 'Train 0.995' },
+          { metric: 'Recall (performing)', value: '0.95', note: '40 of 42 performing customers not wrongly flagged' },
+          { metric: 'Accuracy without arrears columns', value: '0.766', note: 'Only about 4 points above the 0.727 baseline; AUC drops from 0.992 to 0.826' },
+        ],
+      },
+      limitations: 'The dataset has only 766 rows from a single source and is evaluated with one train-test split, so the numbers are better read as a range. The high score mostly reflects recognizing loans that are already in arrears; arrears appear after a loan is running, so this model is not suited to approving new credit. The ablation uses one comparison model and does not separate principal arrears from interest arrears. The age range (17-80) and the treatment of negative balances are my own simple rules, and the meaning of coded columns such as col and guarantor class was not confirmed with the data owner. All findings are statistical associations, not causal effects.',
+      next: 'Lower the decision threshold below 0.5 and measure how much precision is traded for recall, since the cost of a missed non-performing loan is higher than an extra review. For an actual approval model, add application-time features such as income, occupation, credit history, and installment-to-income ratio, and validate with cross-validation instead of a single split.',
+      extraSections: [
+        {
+          heading: 'Reading the metrics from the bank side',
+          body: 'Accuracy alone is misleading here because 72.7% of customers are non-performing. Precision (0.982) means that of 100 customers flagged as non-performing, about 98 truly are, so few good customers get unnecessary collection or provisioning. Recall (0.982) means about 98 of 100 non-performing loans are caught. I prioritize recall on the non-performing class because a missed bad loan costs principal and reserves, while a false flag usually costs an extra review. This rests on an assumption about relative costs; the real figures would have to come from the bank.',
+        },
+        {
+          heading: 'What I would tell a bank',
+          body: 'Arrears monitoring is the clearest early-warning signal in this data. The loan characteristics alone (amount, installment, balance, guarantor, age) are too weak to assess new applicants. The 72.6% non-performing share should be checked: either the sample was filtered to problem cases, or the portfolio itself has a serious issue. Input validation at the source (impossible ages, six spellings of gender, negative balances, mixed number formats) would remove most of the manual cleaning.',
+        },
+        {
+          heading: 'Differences from the original exam notebook',
+          body: 'Customer name removed instead of encoded as a feature. Data split before imputation, capping, selection, and scaling. Impossible ages blanked and imputed instead of IQR-clipped. Stratified split instead of a random one. Added the ablation without arrears columns. Test accuracy moved from 0.9675 to 0.974, which equals one prediction out of 154 on a different split, so I do not count it as a model improvement; what changed is how the result was obtained.',
+        },
+      ],
+    },
+  },
 ]
